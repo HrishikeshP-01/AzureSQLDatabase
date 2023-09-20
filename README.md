@@ -40,3 +40,39 @@ A given tier supplies Y amount of performance such as Max DTUs, Max concurrent w
 - Ideal for high-performance & analytical workloads
 
 Because with analytical workloads, the thinking is that the sources of data can be reconstructed or re-accessed even if the data is lost as they are derived from other sources and fed into the data warehouse. We use Premium RS if we aren’t concerned about high availability but still want high performance.
+
+## Elastic pools
+If we are implementing multiple DBs we have the option to use elastic pools to:
+- Manage & scale multiple DBs
+- Useful when demand on DBs are unpredictable
+- Cost-effective solution
+- DBs reside on a single server & share fixed resources. The costs are fixed as well & each DB configured in the pool are shared with other DBs & when DB A is over-utilized it can borrow from DB B. This allows us to level the peaks off.
+
+#### To create elastic pools:
+- Azure portal
+- PowerShell
+- Transact-SQL
+
+Resources of a database are measure in DTUs – *Database Throughput Units*
+Resources of an elastic pool are measured in eDTUs – *elastic Database Transaction Units*   
+
+#### Features of elastic pools:
+- Autoscaling flexibility
+- Consumption of eDTUs adjusts to meet demand automatically
+- No database downtime required to scale up/down
+- Databases can be actively added or removed from an elastic pool
+- Database suitability (whether or not it should be in the pool) depends on activity/inactivity patterns. However a good rule of thumb is to put DBs that exhibit peaks & ebbs in activity levels.
+- Shared resources simplify management tasks. The resources are allocated dynamically.
+- Expenditures are predictable. Since we allocate a particular amount of resources to an elastic pool. Even if there are multiple DBs in the elastic pool, the expenditures are still predictable.
+
+#### Scaling out with Elastic database tools
+You might need to scale at some point to deal with increased workload, different configs. Etc.
+We can do so using elastic database tools.
+
+Some tools are:
+- Elastic database client library – Allows to create & maintain sharded databases.
+*Sharded database are another term for horizontal partitioning i.e., dividing the DB in some manner*
+- Elastic database split merge tool – Moves data between sharded DBs
+- Elastic database jobs – Manage large numbers of Azure SQL databases, do administration etc.
+- Elastic database query – allows you to run tSQL queries that span multiple databases. This is then used to report using tools like PowerBI, Excel etc.
+- Elastic transactions – Allow you to run transactions that spans over several Azure SQL databases
