@@ -88,3 +88,24 @@ Some tools are:
 - If you require varied geographic location for DBs
 - Custom DB organization
 - Single & multi-tenant sharding – Create a single shard for a single tenant & multiple shards for multi-tenants
+
+## Tempdb files
+
+Optimal tempdb performance recommendations:
+- Implementing SIMPLE recovery model – Helps to improve overall performance because it automatically reclaims log space. Keeps the overall space requirements to a min.
+- Automatic file growth
+- *Be mindful of FILEGROWTH increment & original size of files*. Overall size depends on what’s happening in the environment. The growth increment should remaining fairly consistent to upto 10% of original file size.
+- Do space preallocation – So that it doesn’t have to autogrow every time the service starts
+- Maximize bandwidth – Disk bandwidth. General recommendation is to allocate 1 file per processor. Not a bad idea to keep multiple files on multiple disks especially your best performing disks.
+- Standard file size – Keeps things consistent & reduces contention by reading from one location & writing to another
+- Tempdb database location
+
+## Connecting to Azure SQL database
+There are limited options available in Azure SQL dashboard and most SQL operators love using SQL Server studio. We can connect Azure SQL to SQL Server Studio.
+#### Adding a client
+To add a new client or range of servers to Azure SQL:
+1. Click on set server firewall option
+2. Add the IP address of the client to the list of firewall rules
+3. To add a range of servers, add the start & end IP to the list of firewall rules.
+4. Now open SQL Server Studio, Connect > Database Engine. Enter server name as listed in Azure SQL dashboard (in overview page). Enter login & password > Click connect button. 
+5. Now the DB gets connected to SQL Server Studio & we can now easily manage the DBs.
