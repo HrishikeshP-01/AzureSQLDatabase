@@ -76,3 +76,15 @@ Some tools are:
 - Elastic database jobs – Manage large numbers of Azure SQL databases, do administration etc.
 - Elastic database query – allows you to run tSQL queries that span multiple databases. This is then used to report using tools like PowerBI, Excel etc.
 - Elastic transactions – Allow you to run transactions that spans over several Azure SQL databases
+
+## Scaling
+*Horizontal a.k.a sharding* – Division of a database into multiple different copies and different schemas, different servers, etc. it’s a way of ensuring data is isolated in some way, shape or form.
+*Vertical* – Taking existing DB & changing edition up/down
+
+#### Use cases for sharding
+- Large amount of data for a single database
+- Excessive workload transaction throughput
+- Physical isolation – Primary reasons. If there are multiple tenants in a single DB config. We need to ensure that each tenant is isolated from the others.
+- If you require varied geographic location for DBs
+- Custom DB organization
+- Single & multi-tenant sharding – Create a single shard for a single tenant & multiple shards for multi-tenants
